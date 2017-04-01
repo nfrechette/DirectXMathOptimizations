@@ -4,6 +4,7 @@
 #include <random>
 #include <thread>
 #include <sstream>
+#include <vector>
 
 #include "MatrixMultiply_Ref.h"
 #include "MatrixMultiply_V0.h"
@@ -13,9 +14,16 @@
 #include "MatrixMultiply_V4.h"
 #include "Utils.h"
 
-// Note that enabling multi threading is handy for quick testing but the results will vary.
-// All the test cases write to arrays which will stress the memory bandwidth which can slow things down a bit.
-#define USE_MULTITHREADING		0
+#include "TestCase1.h"
+#include "TestCase2.h"
+#include "TestCase3.h"
+
+enum class TestCaseExecution
+{
+	Sync,						// Single threaded
+	Async_PerCore,				// 1 thread per physical core (max 3)
+	Async_Saturate,				// 1 thread per logical core (max 4)
+};
 
 using namespace DirectX;
 
@@ -125,47 +133,148 @@ void ValidateImplementations()
 	XMMatrixMultiply_V4_Mem2(mtx0, mtx1, tmp_mtx); EnsureMatrixEqual(ref_mtx, tmp_mtx);
 }
 
-extern void TestCase1(const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations, std::stringstream* output);
-extern void TestCase2(const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations, std::stringstream* output);
-extern void TestCase3(const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations, std::stringstream* output);
+struct TestCaseSuite
+{
+	std::vector<TestCaseEntry> entries;
+};
+
+static void Execute_Sync(std::vector<TestCaseSuite>& test_cases, const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations)
+{
+	for (TestCaseSuite& test_case : test_cases)
+	{
+		for (TestCaseEntry& entry : test_case.entries)
+		{
+			for (__int32 i = 0; i < num_samples; ++i)
+				(*entry.test_case_fun)(random_seed, num_iterations, entry.output);
+		}
+
+		for (const TestCaseEntry& entry : test_case.entries)
+			printf(entry.output.str().c_str());
+	}
+}
+
+static void Execute_Async_PerCore(std::vector<TestCaseSuite>& test_cases, const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations)
+{
+	std::vector<TestCaseEntry*> entries;
+	for (TestCaseSuite& test_case : test_cases)
+	{
+		for (TestCaseEntry& entry : test_case.entries)
+			entries.emplace_back(&entry);
+	}
+
+	constexpr __int32 num_threads = 3;
+	const size_t num_entries_per_thread = (entries.size() + num_threads - 1) / num_threads;
+
+	auto thread_start_it = entries.begin();
+	auto entries_end_it = entries.end();
+
+	std::vector<std::thread> threads;
+
+	for (__int32 thread_index = 0; thread_index < num_threads; ++thread_index)
+	{
+		auto thread_end_it = thread_start_it + num_entries_per_thread;
+
+		threads.emplace_back(std::thread([=]() {
+			const __int32 mask = 1 << (thread_index * 2);
+			SetThreadAffinityMask(GetCurrentThread(), mask);
+
+			for (auto it = thread_start_it; it != thread_end_it && it != entries_end_it; ++it)
+			{
+				TestCaseEntry& entry = **it;
+
+				for (__int32 i = 0; i < num_samples; ++i)
+					(*entry.test_case_fun)(random_seed, num_iterations, entry.output);
+			}
+		}));
+
+		thread_start_it = thread_end_it;
+	}
+
+	for (std::thread& thread : threads)
+		thread.join();
+
+	for (TestCaseSuite& test_case : test_cases)
+	{
+		for (const TestCaseEntry& entry : test_case.entries)
+			printf(entry.output.str().c_str());
+	}
+}
+
+static void Execute_Async_Saturate(std::vector<TestCaseSuite>& test_cases, const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations)
+{
+	std::vector<TestCaseEntry*> entries;
+	for (TestCaseSuite& test_case : test_cases)
+	{
+		for (TestCaseEntry& entry : test_case.entries)
+			entries.emplace_back(&entry);
+	}
+
+	constexpr __int32 num_threads = 4;
+	const size_t num_entries_per_thread = (entries.size() + num_threads - 1) / num_threads;
+
+	auto thread_start_it = entries.begin();
+	auto entries_end_it = entries.end();
+
+	std::vector<std::thread> threads;
+
+	for (__int32 thread_index = 0; thread_index < num_threads; ++thread_index)
+	{
+		auto thread_end_it = thread_start_it + num_entries_per_thread;
+
+		threads.emplace_back(std::thread([=]() {
+			const __int32 mask = 1 << thread_index;
+			SetThreadAffinityMask(GetCurrentThread(), mask);
+
+			for (auto it = thread_start_it; it != thread_end_it && it != entries_end_it; ++it)
+			{
+				TestCaseEntry& entry = **it;
+
+				for (__int32 i = 0; i < num_samples; ++i)
+					(*entry.test_case_fun)(random_seed, num_iterations, entry.output);
+			}
+		}));
+
+		thread_start_it = thread_end_it;
+	}
+
+	for (std::thread& thread : threads)
+		thread.join();
+
+	for (TestCaseSuite& test_case : test_cases)
+	{
+		for (const TestCaseEntry& entry : test_case.entries)
+			printf(entry.output.str().c_str());
+	}
+}
 
 void ProfileMatrixMultiply()
 {
 	ValidateImplementations();
 
-	const __int32 num_samples = 100;
-	//const __int32 num_samples = 1;
-	const __int32 num_iterations = 1000000;
-	//const __int32 num_iterations = 1000;
+	constexpr __int32 num_samples = 100;
+	//constexpr __int32 num_samples = 1;
+	constexpr __int32 num_iterations = 1000000;
+	//constexpr __int32 num_iterations = 1000;
 
-	std::stringstream test_case_1_output;
-	std::stringstream test_case_2_output;
-	std::stringstream test_case_3_output;
+	// Note that enabling multi threading is handy for quick testing but the results will vary.
+	// All the test cases write to arrays which will stress the memory bandwidth which can slow things down a bit.
+	constexpr TestCaseExecution execution = TestCaseExecution::Sync;
 
-#if USE_MULTITHREADING
-	std::thread test_case_1([&]() {
-		SetThreadAffinityMask(GetCurrentThread(), 0x01);
-		TestCase1(random_seed, num_samples, num_iterations, &test_case_1_output);
-	});
-	std::thread test_case_2([&]() {
-		SetThreadAffinityMask(GetCurrentThread(), 0x04);
-		TestCase2(random_seed, num_samples, num_iterations, &test_case_2_output);
-	});
-	std::thread test_case_3([&]() {
-		SetThreadAffinityMask(GetCurrentThread(), 0x10);
-		TestCase3(random_seed, num_samples, num_iterations, &test_case_3_output);
-	});
+	std::vector<TestCaseSuite> test_cases;
+	test_cases.push_back(TestCaseSuite{ GetTestCase1Entries() });
+	test_cases.push_back(TestCaseSuite{ GetTestCase2Entries() });
+	test_cases.push_back(TestCaseSuite{ GetTestCase3Entries() });
 
-	test_case_1.join();
-	test_case_2.join();
-	test_case_3.join();
-#else
-	TestCase1(random_seed, num_samples, num_iterations, &test_case_1_output);
-	TestCase2(random_seed, num_samples, num_iterations, &test_case_2_output);
-	TestCase3(random_seed, num_samples, num_iterations, &test_case_3_output);
-#endif
-
-	printf(test_case_1_output.str().c_str());
-	printf(test_case_2_output.str().c_str());
-	printf(test_case_3_output.str().c_str());
+	switch (execution)
+	{
+		case TestCaseExecution::Sync:
+			Execute_Sync(test_cases, random_seed, num_samples, num_iterations);
+			break;
+		case TestCaseExecution::Async_PerCore:
+			Execute_Async_PerCore(test_cases, random_seed, num_samples, num_iterations);
+			break;
+		case TestCaseExecution::Async_Saturate:
+			Execute_Async_Saturate(test_cases, random_seed, num_samples, num_iterations);
+			break;
+	}
 }

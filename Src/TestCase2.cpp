@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "TestCase2.h"
+
 #include <DirectXMath.h>
 
 #include <sstream>
@@ -1017,65 +1019,67 @@ __declspec(noinline) void TestCase2_V4_Mem2(const __int32 random_seed, const __i
 	output << "TestCase2,v4_mem2," << TicksToMS(ticks) << std::endl;
 }
 
-void TestCase2(const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations, std::stringstream* output_)
+std::vector<TestCaseEntry> GetTestCase2Entries()
 {
-	std::stringstream& output = *output_;
+	std::vector<TestCaseEntry> entries;
 
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_Reg(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_Reg2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_RegFlip(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_RegFlip2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_RegExp(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_RegExp2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_Mem(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_Mem2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_Inl(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_Inl2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_InlExp(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_Ref_InlExp2(random_seed, num_iterations, output);
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_Reg });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_Reg2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_RegFlip });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_RegFlip2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_RegExp });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_RegExp2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_Mem });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_Mem2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_Inl });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_Inl2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_InlExp });
+	entries.emplace_back(TestCaseEntry{ TestCase2_Ref_InlExp2 });
 
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_Reg(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_Reg2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_RegFlip(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_RegFlip2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_RegExp(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_RegExp2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_Mem(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_Mem2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_Inl(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_Inl2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_InlExp(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V0_InlExp2(random_seed, num_iterations, output);
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_Reg });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_Reg2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_RegFlip });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_RegFlip2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_RegExp });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_RegExp2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_Mem });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_Mem2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_Inl });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_Inl2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_InlExp });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V0_InlExp2 });
 
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_Reg(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_Reg2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_RegFlip(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_RegFlip2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_RegExp(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_RegExp2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_Mem(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_Mem2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_Inl(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_Inl2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_InlExp(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V1_InlExp2(random_seed, num_iterations, output);
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_Reg });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_Reg2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_RegFlip });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_RegFlip2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_RegExp });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_RegExp2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_Mem });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_Mem2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_Inl });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_Inl2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_InlExp });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V1_InlExp2 });
 
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_Reg(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_Reg2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_RegFlip(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_RegFlip2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_RegExp(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_RegExp2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_Mem(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_Mem2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_Inl(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_Inl2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_InlExp(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V2_InlExp2(random_seed, num_iterations, output);
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_Reg });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_Reg2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_RegFlip });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_RegFlip2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_RegExp });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_RegExp2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_Mem });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_Mem2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_Inl });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_Inl2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_InlExp });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V2_InlExp2 });
 
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V3_RegExp2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V3_Mem2(random_seed, num_iterations, output);
+	entries.emplace_back(TestCaseEntry{ TestCase2_V3_RegExp2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V3_Mem2 });
 
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V4_RegExp2(random_seed, num_iterations, output);
-	for (__int32 i = 0; i < num_samples; ++i) TestCase2_V4_Mem2(random_seed, num_iterations, output);
+	entries.emplace_back(TestCaseEntry{ TestCase2_V4_RegExp2 });
+	entries.emplace_back(TestCaseEntry{ TestCase2_V4_Mem2 });
+
+	return entries;
 }

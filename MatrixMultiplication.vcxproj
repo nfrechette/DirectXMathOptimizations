@@ -95,6 +95,9 @@
     <ClInclude Include="Inc\MatrixMultiply_V4.h" />
     <ClInclude Include="Inc\stdafx.h" />
     <ClInclude Include="Inc\targetver.h" />
+    <ClInclude Include="Inc\TestCase1.h" />
+    <ClInclude Include="Inc\TestCase2.h" />
+    <ClInclude Include="Inc\TestCase3.h" />
     <ClInclude Include="Inc\Utils.h" />
   </ItemGroup>
   <ItemGroup>
