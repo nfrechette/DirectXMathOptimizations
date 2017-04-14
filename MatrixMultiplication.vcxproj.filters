@@ -71,9 +71,6 @@
     <ClCompile Include="Src\TestCase3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="Src\MatrixMultiply_V3.asm">

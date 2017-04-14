@@ -5,6 +5,7 @@
 #include <thread>
 #include <sstream>
 #include <vector>
+#include <conio.h>
 
 #include "MatrixMultiply_Ref.h"
 #include "MatrixMultiply_V0.h"
@@ -277,4 +278,17 @@ void ProfileMatrixMultiply()
 			Execute_Async_Saturate(test_cases, random_seed, num_samples, num_iterations);
 			break;
 	}
+}
+
+int main()
+{
+	ProfileMatrixMultiply();
+
+	if (IsDebuggerPresent())
+	{
+		printf("Press any key to continue...\n");
+		while (_kbhit() == 0);
+	}
+
+	return 0;
 }
