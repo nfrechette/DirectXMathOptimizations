@@ -141,6 +141,9 @@ struct TestCaseSuite
 
 static void Execute_Sync(std::vector<TestCaseSuite>& test_cases, const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations)
 {
+	const __int32 mask = 1 << 0;
+	SetThreadAffinityMask(GetCurrentThread(), mask);
+
 	for (TestCaseSuite& test_case : test_cases)
 	{
 		for (TestCaseEntry& entry : test_case.entries)

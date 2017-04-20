@@ -4,7 +4,7 @@
 
 using namespace DirectX;
 
-// This is the original DirectXMath implementation, as is for SSE only
+// This is the original DirectXMath implementation, as is, for SSE only
 inline XMMATRIX XM_CALLCONV XMMatrixMultiply_Ref_Reg(FXMMATRIX M1, CXMMATRIX M2)
 {
 	XMMATRIX mResult;
