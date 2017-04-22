@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\ScalarSin">
+      <UniqueIdentifier>{79c77479-ea84-426a-8b4e-19fffda2b602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\VectorSin">
+      <UniqueIdentifier>{937f0d75-5759-4f8b-96a5-8fe08bb985c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ScalarSin\CPP">
+      <UniqueIdentifier>{fe32fcc1-e66c-4c48-9149-5a45a5ad0e44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ScalarSin\SSE">
+      <UniqueIdentifier>{3c52bdfb-5c1b-47a8-a397-57e5e4cea45a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ScalarSin\FMA">
+      <UniqueIdentifier>{0eb3b00d-c50c-479b-a4f8-0f5ee81d2d41}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Inc\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_Ref.h">
+      <Filter>Header Files\ScalarSin</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_Ref.h">
+      <Filter>Header Files\VectorSin</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V00.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V01.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V02.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V03.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V04.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V05.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V06.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V10.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V12.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V11.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V13.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V14.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V15.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V16.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V20.h">
+      <Filter>Header Files\ScalarSin\FMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V17.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V18.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V19.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Trigonometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

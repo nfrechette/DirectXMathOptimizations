@@ -19,6 +19,29 @@ inline bool EnsureMatrixEqual(CXMMATRIX m1, CXMMATRIX m2)
 	return true;
 }
 
+inline bool EnsureFloatEqual(float v1, float v2)
+{
+	if (memcmp(&v1, &v2, sizeof(float)) != 0)
+	{
+		abort();
+		return false;
+	}
+
+	return true;
+}
+
+inline bool EnsureFloatApproxEqual(float v1, float v2, double threshold)
+{
+	double delta_abs = fabs(double(v1) - double(v2));
+	if (delta_abs > threshold)
+	{
+		abort();
+		return false;
+	}
+
+	return true;
+}
+
 extern XMMATRIX GenerateRandomMatrix(std::default_random_engine& re);
 
 template<class Lambda>

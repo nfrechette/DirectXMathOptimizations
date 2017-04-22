@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatrixMultiplication", "MatrixMultiplication.vcxproj", "{A13EB55F-3A32-478E-9E84-011996D207E7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Trigonometry", "Trigonometry.vcxproj", "{162596E9-8E6A-4A0D-823A-438CF898B734}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,6 +17,10 @@ Global
 		{A13EB55F-3A32-478E-9E84-011996D207E7}.Debug|x64.Build.0 = Debug|x64
 		{A13EB55F-3A32-478E-9E84-011996D207E7}.Release|x64.ActiveCfg = Release|x64
 		{A13EB55F-3A32-478E-9E84-011996D207E7}.Release|x64.Build.0 = Release|x64
+		{162596E9-8E6A-4A0D-823A-438CF898B734}.Debug|x64.ActiveCfg = Debug|x64
+		{162596E9-8E6A-4A0D-823A-438CF898B734}.Debug|x64.Build.0 = Debug|x64
+		{162596E9-8E6A-4A0D-823A-438CF898B734}.Release|x64.ActiveCfg = Release|x64
+		{162596E9-8E6A-4A0D-823A-438CF898B734}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
