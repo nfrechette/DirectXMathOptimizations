@@ -83,6 +83,7 @@ ScalarSinConstants_V06 SCALAR_SIN_CONSTANTS_V06 =
 ScalarSinConstants_V19 SCALAR_SIN_CONSTANTS_V19 =
 {
 	0.5f,
+	-0.5f,
 	XM_PI,
 	-XM_PI,
 	XM_2PI,
@@ -397,23 +398,23 @@ void ProfileTrigonometry()
 
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_Ref(random_seed, num_iterations, output, inputs, num_inputs);
 
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V00(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V01(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V02(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V03(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V04(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V05(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V00(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V01(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V02(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V03(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V04(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V05(random_seed, num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V06(random_seed, num_iterations, output, inputs, num_inputs);
 
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V10(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V11(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V12(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V13(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V14(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V15(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V16(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V17(random_seed, num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V18(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V10(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V11(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V12(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V13(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V14(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V15(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V16(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V17(random_seed, num_iterations, output, inputs, num_inputs);
+	//for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V18(random_seed, num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V19(random_seed, num_iterations, output, inputs, num_inputs);
 
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V20(random_seed, num_iterations, output, inputs, num_inputs);

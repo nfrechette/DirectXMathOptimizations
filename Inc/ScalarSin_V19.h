@@ -8,6 +8,7 @@ using namespace DirectX;
 __declspec(align(64)) struct ScalarSinConstants_V19
 {
 	float half;					//  4 bytes
+	float neg_half;				//  4 bytes
 	float pi;					//  4 bytes
 	float neg_pi;				//  4 bytes
 	float two_pi;				//  4 bytes
@@ -17,7 +18,7 @@ __declspec(align(64)) struct ScalarSinConstants_V19
 
 	float coefficients[6];		// 24 bytes
 
-	// Total struct size:		   52 bytes
+	// Total struct size:		   56 bytes
 };
 
 // Extern instead of constexpr since it forces the compiler to use the cache line
@@ -33,16 +34,8 @@ inline float XMScalarSin_V19(const float Value)
 
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	XMVECTOR quotient = _mm_mul_ss(value_v, *(XMVECTOR*)&SCALAR_SIN_CONSTANTS_V19.inv_two_pi);
-	if (Value >= 0.0f)
-	{
-		quotient = _mm_add_ss(quotient, *(XMVECTOR*)&SCALAR_SIN_CONSTANTS_V19.half);
-		// 1 mul, 1 cmp, 2 jmp, 1 add = 5 instructions
-	}
-	else
-	{
-		quotient = _mm_sub_ss(quotient, *(XMVECTOR*)&SCALAR_SIN_CONSTANTS_V19.half);
-		// 1 mul, 1 cmp, 1 jmp, 1 sub = 4 instructions
-	}
+	XMVECTOR rounding_offset = Value >= 0.0f ? _mm_broadcast_ss(&SCALAR_SIN_CONSTANTS_V19.half) : _mm_broadcast_ss(&SCALAR_SIN_CONSTANTS_V19.neg_half);
+	quotient = _mm_add_ss(quotient, rounding_offset);
 
 	quotient = _mm_round_ss(quotient, quotient, _MM_FROUND_TO_ZERO);
 

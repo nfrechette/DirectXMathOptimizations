@@ -5,6 +5,8 @@
 using namespace DirectX;
 
 constexpr uint32_t SIGN_BIT_MASK_V18 = 0x80000000;
+constexpr float HALF_V18 = 0.5f;
+constexpr float NEG_HALF_V18 = -0.5f;
 constexpr XMVECTOR XM_HALF_V18 = { 0.5f, 0.5f, 0.5f, 0.5f };
 constexpr XMVECTOR XM_PI_V18 = { XM_PI, XM_PI, XM_PI, XM_PI };
 constexpr XMVECTOR XM_NEG_PI_V18 = { -XM_PI, -XM_PI, -XM_PI, -XM_PI };
@@ -14,22 +16,16 @@ constexpr XMVECTOR XM_PIDIV2_V18 = { XM_PIDIV2, XM_PIDIV2, XM_PIDIV2, XM_PIDIV2 
 constexpr XMVECTOR XM_NEG_PIDIV2_V18 = { -XM_PIDIV2, -XM_PIDIV2, -XM_PIDIV2, -XM_PIDIV2 };
 
 // V18 does the first branch the same way that the C++ scalar version ends up with
+// The only difference is that we can't generate the mov_ss instruction with intrinsics,
+// we are forced to use broadcast
 __declspec(noinline) float XMScalarSin_V18(const float Value)
 {
 	const XMVECTOR value_v = _mm_set_ps1(Value);
 
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	XMVECTOR quotient = _mm_mul_ss(value_v, XM_1DIV2PI_V18);
-	if (Value >= 0.0f)
-	{
-		quotient = _mm_add_ss(quotient, XM_HALF_V18);
-		// 1 mul, 1 cmp, 2 jmp, 1 add = 5 instructions
-	}
-	else
-	{
-		quotient = _mm_sub_ss(quotient, XM_HALF_V18);
-		// 1 mul, 1 cmp, 1 jmp, 1 sub = 4 instructions
-	}
+	XMVECTOR rounding_offset = Value >= 0.0f ? _mm_broadcast_ss(&HALF_V18) : _mm_broadcast_ss(&NEG_HALF_V18);
+	quotient = _mm_add_ss(quotient, rounding_offset);
 
 	quotient = _mm_round_ss(quotient, quotient, _MM_FROUND_TO_ZERO);
 
