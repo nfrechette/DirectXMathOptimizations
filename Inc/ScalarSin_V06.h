@@ -7,6 +7,7 @@ using namespace DirectX;
 // Align to a cache line
 __declspec(align(64)) struct ScalarSinConstants_V06
 {
+	float zero;					//  4 bytes
 	float half;					//  4 bytes
 	float neg_half;				//  4 bytes
 	float pi;					//  4 bytes
@@ -18,21 +19,21 @@ __declspec(align(64)) struct ScalarSinConstants_V06
 
 	float coefficients[6];		// 24 bytes
 
-	// Total struct size:		   56 bytes
+	// Total struct size:		   60 bytes
 };
 
 // Extern instead of constexpr since it forces the compiler to use the cache line
 // aligned constants
 extern ScalarSinConstants_V06 SCALAR_SIN_CONSTANTS_V06;
 
-// V06 is identical to V04 except that we allow the function to inline
-// Sadly it fails to inline
-// It uses: 5 XMM registers, 34 instructions
-inline float XMScalarSin_V06(float Value)
+// V06 is identical to V05 except that we try to remove an instruction in the first branch
+// by comparing with 0.0f as a packed constant instead of generating it with xor
+// It uses: 5 XMM registers, 33 instructions
+__declspec(noinline) float XMScalarSin_V06(float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = Value * SCALAR_SIN_CONSTANTS_V06.inv_two_pi;
-	const float rounding_offset = Value >= 0.0f ? SCALAR_SIN_CONSTANTS_V06.half : SCALAR_SIN_CONSTANTS_V06.neg_half;
+	const float rounding_offset = Value >= SCALAR_SIN_CONSTANTS_V06.zero ? SCALAR_SIN_CONSTANTS_V06.half : SCALAR_SIN_CONSTANTS_V06.neg_half;
 	quotient = float(int(quotient + rounding_offset));
 
 	float y = Value - (quotient * SCALAR_SIN_CONSTANTS_V06.two_pi);

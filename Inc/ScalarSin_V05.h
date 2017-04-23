@@ -7,7 +7,6 @@ using namespace DirectX;
 // Align to a cache line
 __declspec(align(64)) struct ScalarSinConstants_V05
 {
-	float zero;					//  4 bytes
 	float half;					//  4 bytes
 	float neg_half;				//  4 bytes
 	float pi;					//  4 bytes
@@ -19,21 +18,26 @@ __declspec(align(64)) struct ScalarSinConstants_V05
 
 	float coefficients[6];		// 24 bytes
 
-	// Total struct size:		   60 bytes
+	// Total struct size:		   56 bytes
 };
 
 // Extern instead of constexpr since it forces the compiler to use the cache line
 // aligned constants
 extern ScalarSinConstants_V05 SCALAR_SIN_CONSTANTS_V05;
 
-// V05 is identical to V04 except that we try to remove an instruction in the first branch
-// by comparing with 0.0f as a packed constant instead of generating it with xor
-// It uses: 5 XMM registers, 33 instructions
+// V05 is the best I could do with C++ scalar math
+// Nearly everything uses as few registers as possible by leveraging instructions that
+// can load constants directly from memory.
+// All constants are packed in the same cache line
+// A single xor instruction is generated for no reason when we convert/floor quotient
+// to zero out the XMM.yzw components but it isn't strictly necessary
+// Also maybe we can use the SSE round instruction?
+// It uses: 5 XMM registers, 34 instructions
 __declspec(noinline) float XMScalarSin_V05(float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = Value * SCALAR_SIN_CONSTANTS_V05.inv_two_pi;
-	const float rounding_offset = Value >= SCALAR_SIN_CONSTANTS_V05.zero ? SCALAR_SIN_CONSTANTS_V05.half : SCALAR_SIN_CONSTANTS_V05.neg_half;
+	const float rounding_offset = Value >= 0.0f ? SCALAR_SIN_CONSTANTS_V05.half : SCALAR_SIN_CONSTANTS_V05.neg_half;
 	quotient = float(int(quotient + rounding_offset));
 
 	float y = Value - (quotient * SCALAR_SIN_CONSTANTS_V05.two_pi);
