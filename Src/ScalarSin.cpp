@@ -14,6 +14,7 @@ using namespace DirectX;
 #include "ScalarSin_V01.h"
 #include "ScalarSin_V02.h"
 #include "ScalarSin_V03.h"
+#include "ScalarSin_V04.h"
 #include "ScalarSin_V05.h"
 #include "ScalarSin_V06.h"
 #include "ScalarSin_V07.h"
@@ -166,6 +167,19 @@ __declspec(noinline) void Test_ScalarSin_V03(const __int32 num_iterations, std::
 	});
 
 	output << "scalar_sin,v03," << TicksToMS(ticks) << std::endl;
+}
+
+__declspec(noinline) void Test_ScalarSin_V04(const __int32 num_iterations, std::stringstream& output, const float* inputs, const __int32 num_inputs)
+{
+	volatile float result = 0.0f;
+
+	LONGLONG ticks = Measure(num_iterations, [inputs, num_inputs, &result]()
+	{
+		for (__int32 i = 0; i < num_inputs; ++i)
+			result = XMScalarSin_V04(inputs[i]);
+	});
+
+	output << "scalar_sin,v04," << TicksToMS(ticks) << std::endl;
 }
 
 __declspec(noinline) void Test_ScalarSin_V05(const __int32 num_iterations, std::stringstream& output, const float* inputs, const __int32 num_inputs)
@@ -413,6 +427,7 @@ void ValidateImplementations(const float input)
 	EnsureFloatEqual(result_ref, XMScalarSin_V01(input));
 	EnsureFloatEqual(result_ref, XMScalarSin_V02(input));
 	EnsureFloatEqual(result_ref, XMScalarSin_V03(input));
+	EnsureFloatEqual(result_ref, XMScalarSin_V04(input));
 	EnsureFloatEqual(result_ref, XMScalarSin_V05(input));
 	EnsureFloatEqual(result_ref, XMScalarSin_V06(input));
 	EnsureFloatEqual(result_ref, XMScalarSin_V07(input));
@@ -471,6 +486,7 @@ void ProfileScalarSin(const __int32 random_seed, const __int32 num_samples, cons
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V01(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V02(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V03(num_iterations, output, inputs, num_inputs);
+	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V04(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V05(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V06(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V07(num_iterations, output, inputs, num_inputs);

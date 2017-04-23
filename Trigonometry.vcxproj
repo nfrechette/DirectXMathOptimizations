@@ -92,6 +92,7 @@
     <ClInclude Include="Inc\ScalarSin_Ref.h" />
     <ClInclude Include="Inc\ScalarSin_V00.h" />
     <ClInclude Include="Inc\ScalarSin_V01.h" />
+    <ClInclude Include="Inc\ScalarSin_V04.h" />
     <ClInclude Include="Inc\ScalarSin_V05.h" />
     <ClInclude Include="Inc\ScalarSin_V06.h" />
     <ClInclude Include="Inc\ScalarSin_V07.h" />

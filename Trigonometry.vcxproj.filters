@@ -114,6 +114,9 @@
     <ClInclude Include="Inc\ScalarSin_V05.h">
       <Filter>Header Files\ScalarSin\CPP</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V04.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\stdafx.cpp">
