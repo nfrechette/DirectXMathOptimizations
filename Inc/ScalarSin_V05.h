@@ -25,20 +25,29 @@ __declspec(align(64)) struct ScalarSinConstants_V05
 // aligned constants
 extern ScalarSinConstants_V05 SCALAR_SIN_CONSTANTS_V05;
 
-// V05 is the best I could do with C++ scalar math
+// V05 is the best I could do with C++ scalar math (based on V04)
 // Nearly everything uses as few registers as possible by leveraging instructions that
 // can load constants directly from memory.
 // All constants are packed in the same cache line
 // A single xor instruction is generated for no reason when we convert/floor quotient
 // to zero out the XMM.yzw components but it isn't strictly necessary
 // Also maybe we can use the SSE round instruction?
+// V05 is slower because the instruction ordering before the first branch changes just a tiny bit for
+// an unknown reason.
 // It uses: 5 XMM registers, 34 instructions
 __declspec(noinline) float XMScalarSin_V05(float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = Value * SCALAR_SIN_CONSTANTS_V05.inv_two_pi;
-	const float rounding_offset = Value >= 0.0f ? SCALAR_SIN_CONSTANTS_V05.half : SCALAR_SIN_CONSTANTS_V05.neg_half;
-	quotient = float(int(quotient + rounding_offset));
+	if (Value >= 0.0f)
+	{
+		quotient += SCALAR_SIN_CONSTANTS_V05.half;
+	}
+	else
+	{
+		quotient += SCALAR_SIN_CONSTANTS_V05.neg_half;
+	}
+	quotient = float(int(quotient));
 
 	float y = Value - (quotient * SCALAR_SIN_CONSTANTS_V05.two_pi);
 

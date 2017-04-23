@@ -33,8 +33,15 @@ __declspec(noinline) float XMScalarSin_V06(float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = Value * SCALAR_SIN_CONSTANTS_V06.inv_two_pi;
-	const float rounding_offset = Value >= SCALAR_SIN_CONSTANTS_V06.zero ? SCALAR_SIN_CONSTANTS_V06.half : SCALAR_SIN_CONSTANTS_V06.neg_half;
-	quotient = float(int(quotient + rounding_offset));
+	if (Value >= 0.0f)
+	{
+		quotient += SCALAR_SIN_CONSTANTS_V06.half;
+	}
+	else
+	{
+		quotient += SCALAR_SIN_CONSTANTS_V06.neg_half;
+	}
+	quotient = float(int(quotient));
 
 	float y = Value - (quotient * SCALAR_SIN_CONSTANTS_V06.two_pi);
 
