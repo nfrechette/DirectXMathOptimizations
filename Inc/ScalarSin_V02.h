@@ -15,7 +15,7 @@ __declspec(noinline) float XMScalarSin_V02(float Value)
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = XM_1DIV2PI * Value;
 	const float rounding_offset = Value >= 0.0f ? HALF_V02 : NEG_HALF_V02;
-	quotient = (float)((int)(quotient + rounding_offset));
+	quotient = float(int(quotient + rounding_offset));
 
 	float y = Value - XM_2PI * quotient;
 

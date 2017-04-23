@@ -9,6 +9,7 @@ __declspec(align(64)) struct ScalarSinConstants_V05
 {
 	float zero;					//  4 bytes
 	float half;					//  4 bytes
+	float neg_half;				//  4 bytes
 	float pi;					//  4 bytes
 	float neg_pi;				//  4 bytes
 	float two_pi;				//  4 bytes
@@ -18,7 +19,7 @@ __declspec(align(64)) struct ScalarSinConstants_V05
 
 	float coefficients[6];		// 24 bytes
 
-	// Total struct size:		   56 bytes
+	// Total struct size:		   60 bytes
 };
 
 // Extern instead of constexpr since it forces the compiler to use the cache line
@@ -32,16 +33,8 @@ __declspec(noinline) float XMScalarSin_V05(float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = Value * SCALAR_SIN_CONSTANTS_V05.inv_two_pi;
-	//if (Value >= 0.0f)
-	if (Value >= SCALAR_SIN_CONSTANTS_V05.zero)
-	{
-		quotient += SCALAR_SIN_CONSTANTS_V05.half;
-	}
-	else
-	{
-		quotient -= SCALAR_SIN_CONSTANTS_V05.half;
-	}
-	quotient = (float)((int)quotient);
+	const float rounding_offset = Value >= SCALAR_SIN_CONSTANTS_V05.zero ? SCALAR_SIN_CONSTANTS_V05.half : SCALAR_SIN_CONSTANTS_V05.neg_half;
+	quotient = float(int(quotient + rounding_offset));
 
 	float y = Value - (quotient * SCALAR_SIN_CONSTANTS_V05.two_pi);
 

@@ -8,6 +8,7 @@ using namespace DirectX;
 __declspec(align(64)) struct ScalarSinConstants_V04
 {
 	float half;					//  4 bytes
+	float neg_half;				//  4 bytes
 	float pi;					//  4 bytes
 	float neg_pi;				//  4 bytes
 	float two_pi;				//  4 bytes
@@ -17,7 +18,7 @@ __declspec(align(64)) struct ScalarSinConstants_V04
 
 	float coefficients[6];		// 24 bytes
 
-	// Total struct size:		   52 bytes
+	// Total struct size:		   56 bytes
 };
 
 // Extern instead of constexpr since it forces the compiler to use the cache line
@@ -36,15 +37,8 @@ __declspec(noinline) float XMScalarSin_V04(float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = Value * SCALAR_SIN_CONSTANTS_V04.inv_two_pi;
-	if (Value >= 0.0f)
-	{
-		quotient += SCALAR_SIN_CONSTANTS_V04.half;
-	}
-	else
-	{
-		quotient -= SCALAR_SIN_CONSTANTS_V04.half;
-	}
-	quotient = (float)((int)quotient);
+	const float rounding_offset = Value >= 0.0f ? SCALAR_SIN_CONSTANTS_V04.half : SCALAR_SIN_CONSTANTS_V04.neg_half;
+	quotient = float(int(quotient + rounding_offset));
 
 	float y = Value - (quotient * SCALAR_SIN_CONSTANTS_V04.two_pi);
 
