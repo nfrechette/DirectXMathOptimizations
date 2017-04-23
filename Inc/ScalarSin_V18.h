@@ -4,7 +4,6 @@
 
 using namespace DirectX;
 
-constexpr uint32_t SIGN_BIT_MASK_V18 = 0x80000000;
 constexpr float HALF_V18 = 0.5f;
 constexpr float NEG_HALF_V18 = -0.5f;
 constexpr XMVECTOR XM_HALF_V18 = { 0.5f, 0.5f, 0.5f, 0.5f };

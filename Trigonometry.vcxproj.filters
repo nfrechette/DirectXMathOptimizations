@@ -99,12 +99,30 @@
     <ClInclude Include="Inc\ScalarSin_V19.h">
       <Filter>Header Files\ScalarSin\SSE</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V21.h">
+      <Filter>Header Files\ScalarSin\FMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V22.h">
+      <Filter>Header Files\ScalarSin\FMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V23.h">
+      <Filter>Header Files\ScalarSin\FMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_V24.h">
+      <Filter>Header Files\ScalarSin\FMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin.h">
+      <Filter>Header Files\ScalarSin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Trigonometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ScalarSin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

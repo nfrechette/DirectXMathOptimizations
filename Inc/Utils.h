@@ -3,14 +3,16 @@
 #include <windows.h>
 #include <random>
 
+#include <DirectXMath.h>
+
 inline float DegToRad(const float input)
 {
-	return input / 360.0f * XM_2PI;
+	return input / 360.0f * DirectX::XM_2PI;
 }
 
-inline bool EnsureMatrixEqual(CXMMATRIX m1, CXMMATRIX m2)
+inline bool EnsureMatrixEqual(DirectX::CXMMATRIX m1, DirectX::CXMMATRIX m2)
 {
-	if (memcmp(&m1, &m2, sizeof(XMMATRIX)) != 0)
+	if (memcmp(&m1, &m2, sizeof(DirectX::XMMATRIX)) != 0)
 	{
 		abort();
 		return false;
