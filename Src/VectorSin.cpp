@@ -1,4 +1,4 @@
-#include "VectorSin.h"
+#include "VectorSin\VectorSin.h"
 #include <DirectXMath.h>
 
 #include <sstream>
@@ -6,22 +6,22 @@
 using namespace DirectX;
 
 #include "Utils.h"
-#include "VectorSin_Ref.h"
+#include "VectorSin\VectorSin_Ref.h"
 
 // Versions using SSE scalar math
-#include "VectorSin_SSE_V00.h"
-#include "VectorSin_SSE_V01.h"
-#include "VectorSin_SSE_V02.h"
-#include "VectorSin_SSE_V03.h"
-#include "VectorSin_SSE_V04.h"
-#include "VectorSin_SSE_V05.h"
-#include "VectorSin_SSE_V06.h"
-#include "VectorSin_SSE_V07.h"
-#include "VectorSin_SSE_V08.h"
+#include "VectorSin\VectorSin_SSE_V00.h"
+#include "VectorSin\VectorSin_SSE_V01.h"
+#include "VectorSin\VectorSin_SSE_V02.h"
+#include "VectorSin\VectorSin_SSE_V03.h"
+#include "VectorSin\VectorSin_SSE_V04.h"
+#include "VectorSin\VectorSin_SSE_V05.h"
+#include "VectorSin\VectorSin_SSE_V06.h"
+#include "VectorSin\VectorSin_SSE_V07.h"
+#include "VectorSin\VectorSin_SSE_V08.h"
 
 // Versions using FMA scalar math
-#include "VectorSin_FMA_V00.h"
-#include "VectorSin_FMA_V01.h"
+#include "VectorSin\VectorSin_FMA_V00.h"
+#include "VectorSin\VectorSin_FMA_V01.h"
 
 VectorSinConstants_SSE_V04 VECTOR_SIN_CONSTANTS_SSE_V04 =
 {

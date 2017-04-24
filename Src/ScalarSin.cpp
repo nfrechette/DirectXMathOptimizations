@@ -1,4 +1,4 @@
-#include "ScalarSin.h"
+#include "ScalarSin\ScalarSin.h"
 #include <DirectXMath.h>
 
 #include <sstream>
@@ -6,36 +6,36 @@
 using namespace DirectX;
 
 #include "Utils.h"
-#include "ScalarSin_Ref.h"
+#include "ScalarSin\ScalarSin_Ref.h"
 
 // Versions using C++ scalar math
-#include "ScalarSin_CPP_V00.h"
-#include "ScalarSin_CPP_V01.h"
-#include "ScalarSin_CPP_V02.h"
-#include "ScalarSin_CPP_V03.h"
-#include "ScalarSin_CPP_V04.h"
-#include "ScalarSin_CPP_V05.h"
-#include "ScalarSin_CPP_V06.h"
-#include "ScalarSin_CPP_V07.h"
+#include "ScalarSin\ScalarSin_CPP_V00.h"
+#include "ScalarSin\ScalarSin_CPP_V01.h"
+#include "ScalarSin\ScalarSin_CPP_V02.h"
+#include "ScalarSin\ScalarSin_CPP_V03.h"
+#include "ScalarSin\ScalarSin_CPP_V04.h"
+#include "ScalarSin\ScalarSin_CPP_V05.h"
+#include "ScalarSin\ScalarSin_CPP_V06.h"
+#include "ScalarSin\ScalarSin_CPP_V07.h"
 
 // Versions using SSE scalar math
-#include "ScalarSin_SSE_V00.h"
-#include "ScalarSin_SSE_V01.h"
-#include "ScalarSin_SSE_V02.h"
-#include "ScalarSin_SSE_V03.h"
-#include "ScalarSin_SSE_V04.h"
-#include "ScalarSin_SSE_V05.h"
-#include "ScalarSin_SSE_V06.h"
-#include "ScalarSin_SSE_V07.h"
-#include "ScalarSin_SSE_V08.h"
-#include "ScalarSin_SSE_V09.h"
-#include "ScalarSin_SSE_V10.h"
+#include "ScalarSin\ScalarSin_SSE_V00.h"
+#include "ScalarSin\ScalarSin_SSE_V01.h"
+#include "ScalarSin\ScalarSin_SSE_V02.h"
+#include "ScalarSin\ScalarSin_SSE_V03.h"
+#include "ScalarSin\ScalarSin_SSE_V04.h"
+#include "ScalarSin\ScalarSin_SSE_V05.h"
+#include "ScalarSin\ScalarSin_SSE_V06.h"
+#include "ScalarSin\ScalarSin_SSE_V07.h"
+#include "ScalarSin\ScalarSin_SSE_V08.h"
+#include "ScalarSin\ScalarSin_SSE_V09.h"
+#include "ScalarSin\ScalarSin_SSE_V10.h"
 
 // Versions using FMA scalar math
-#include "ScalarSin_FMA_V00.h"
-#include "ScalarSin_FMA_V01.h"
-#include "ScalarSin_FMA_V02.h"
-#include "ScalarSin_FMA_V03.h"
+#include "ScalarSin\ScalarSin_FMA_V00.h"
+#include "ScalarSin\ScalarSin_FMA_V01.h"
+#include "ScalarSin\ScalarSin_FMA_V02.h"
+#include "ScalarSin\ScalarSin_FMA_V03.h"
 
 ScalarSinConstants_CPP_V05 SCALAR_SIN_CONSTANTS_CPP_V05 =
 {

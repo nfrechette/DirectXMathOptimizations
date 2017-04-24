@@ -1,8 +1,6 @@
 #include "stdafx.h"
-#include "ScalarSin.h"
-#include "VectorSin.h"
-
-#include <DirectXMath.h>
+#include "ScalarSin\ScalarSin.h"
+#include "VectorSin\VectorSin.h"
 
 #include <thread>
 #include <windows.h>

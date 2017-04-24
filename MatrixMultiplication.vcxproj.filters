@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Inc\MatrixMultiply_Ref.h">
+    <ClInclude Include="Inc\MatrixMultiply\MatrixMultiply_Ref.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\MatrixMultiply_V0.h">
+    <ClInclude Include="Inc\MatrixMultiply\MatrixMultiply_V0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\MatrixMultiply_V1.h">
+    <ClInclude Include="Inc\MatrixMultiply\MatrixMultiply_V1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\MatrixMultiply_V2.h">
+    <ClInclude Include="Inc\MatrixMultiply\MatrixMultiply_V2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\MatrixMultiply_V3.h">
+    <ClInclude Include="Inc\MatrixMultiply\MatrixMultiply_V3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\MatrixMultiply_V4.h">
+    <ClInclude Include="Inc\MatrixMultiply\MatrixMultiply_V4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Inc\stdafx.h">
@@ -42,16 +42,16 @@
     <ClInclude Include="Inc\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\MatrixMultiply.h">
+    <ClInclude Include="Inc\MatrixMultiply\MatrixMultiply.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\TestCase1.h">
+    <ClInclude Include="Inc\MatrixMultiply\TestCase1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\TestCase2.h">
+    <ClInclude Include="Inc\MatrixMultiply\TestCase2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\TestCase3.h">
+    <ClInclude Include="Inc\MatrixMultiply\TestCase3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

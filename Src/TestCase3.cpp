@@ -1,16 +1,16 @@
 #include "stdafx.h"
-#include "TestCase3.h"
+#include "MatrixMultiply\TestCase3.h"
 
 #include <DirectXMath.h>
 
 #include <sstream>
 
-#include "MatrixMultiply_Ref.h"
-#include "MatrixMultiply_V0.h"
-#include "MatrixMultiply_V1.h"
-#include "MatrixMultiply_V2.h"
-#include "MatrixMultiply_V3.h"
-#include "MatrixMultiply_V4.h"
+#include "MatrixMultiply\MatrixMultiply_Ref.h"
+#include "MatrixMultiply\MatrixMultiply_V0.h"
+#include "MatrixMultiply\MatrixMultiply_V1.h"
+#include "MatrixMultiply\MatrixMultiply_V2.h"
+#include "MatrixMultiply\MatrixMultiply_V3.h"
+#include "MatrixMultiply\MatrixMultiply_V4.h"
 #include "Utils.h"
 
 using namespace DirectX;
