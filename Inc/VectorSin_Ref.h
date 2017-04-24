@@ -79,14 +79,3 @@ inline XMVECTOR XM_CALLCONV XMVectorSin_Ref(FXMVECTOR V)
 	Result = _mm_mul_ps(Result, x);
 	return Result;
 }
-
-// VectorSin and ScalarSin do not return identical results due to how rounding is performed.
-// ScalarSin performs symmetrical rounding where 0.5 rounds to 1.0 and -0.5 rounds to -1.0 and 1.5 rounds to 2.0
-// VectorSin performs banker's rounding where 0.5 rounds to 0.0 and -0.5 rounds to 0.0 and 1.5 rounds to 2.0
-
-// Optimization list:
-// First load the coeff constants with broadcast
-// Load the coeff directly from memory
-// Replace the branchless and/or stuff with blendv
-// Replace the rounding with symmetric rounding as in ScalarSin
-// Try FMA

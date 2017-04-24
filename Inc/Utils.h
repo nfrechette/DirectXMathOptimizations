@@ -5,7 +5,7 @@
 
 #include <DirectXMath.h>
 
-inline float DegToRad(const float input)
+inline constexpr float DegToRad(const float input)
 {
 	return input / 360.0f * DirectX::XM_2PI;
 }
@@ -28,6 +28,12 @@ inline bool IsFloatEqual(const float v1, const float v2)
 	return inputs_equal || both_zero;
 }
 
+inline bool IsFloatApproxEqual(const float v1, const float v2, const double threshold)
+{
+	const double delta_abs = fabs(double(v1) - double(v2));
+	return delta_abs <= threshold;
+}
+
 inline bool EnsureFloatEqual(const float v1, const float v2)
 {
 	if (!IsFloatEqual(v1, v2))
@@ -39,7 +45,7 @@ inline bool EnsureFloatEqual(const float v1, const float v2)
 	return true;
 }
 
-inline bool XM_CALLCONV EnsureVectorEqual(const DirectX::XMVECTOR v1, const DirectX::XMVECTOR v2)
+inline bool EnsureVectorEqual(const DirectX::XMVECTOR& v1, const DirectX::XMVECTOR& v2)
 {
 	if (!IsFloatEqual(*((float*)&v1 + 0), *((float*)&v2 + 0))
 		|| !IsFloatEqual(*((float*)&v1 + 1), *((float*)&v2 + 1))
@@ -55,8 +61,21 @@ inline bool XM_CALLCONV EnsureVectorEqual(const DirectX::XMVECTOR v1, const Dire
 
 inline bool EnsureFloatApproxEqual(const float v1, const float v2, const double threshold)
 {
-	const double delta_abs = fabs(double(v1) - double(v2));
-	if (delta_abs > threshold)
+	if (!IsFloatApproxEqual(v1, v2, threshold))
+	{
+		abort();
+		return false;
+	}
+
+	return true;
+}
+
+inline bool EnsureVectorApproxEqual(const DirectX::XMVECTOR& v1, const DirectX::XMVECTOR& v2, const double threshold)
+{
+	if (!IsFloatApproxEqual(*((float*)&v1 + 0), *((float*)&v2 + 0), threshold)
+		|| !IsFloatApproxEqual(*((float*)&v1 + 1), *((float*)&v2 + 1), threshold)
+		|| !IsFloatApproxEqual(*((float*)&v1 + 2), *((float*)&v2 + 2), threshold)
+		|| !IsFloatApproxEqual(*((float*)&v1 + 3), *((float*)&v2 + 3), threshold))
 	{
 		abort();
 		return false;

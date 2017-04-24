@@ -8,7 +8,7 @@ using namespace DirectX;
 #include "Utils.h"
 #include "ScalarSin_Ref.h"
 
-// 0* versions use C++ scalar math
+// Versions using C++ scalar math
 #include "ScalarSin_CPP_V00.h"
 #include "ScalarSin_CPP_V01.h"
 #include "ScalarSin_CPP_V02.h"
@@ -18,7 +18,7 @@ using namespace DirectX;
 #include "ScalarSin_CPP_V06.h"
 #include "ScalarSin_CPP_V07.h"
 
-// 1* versions use SSE scalar math
+// Versions using SSE scalar math
 #include "ScalarSin_SSE_V00.h"
 #include "ScalarSin_SSE_V01.h"
 #include "ScalarSin_SSE_V02.h"
@@ -31,7 +31,7 @@ using namespace DirectX;
 #include "ScalarSin_SSE_V09.h"
 #include "ScalarSin_SSE_V10.h"
 
-// 2* versions use FMA scalar math
+// Versions using FMA scalar math
 #include "ScalarSin_FMA_V00.h"
 #include "ScalarSin_FMA_V01.h"
 #include "ScalarSin_FMA_V02.h"

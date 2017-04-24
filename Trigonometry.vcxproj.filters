@@ -126,6 +126,39 @@
     <ClInclude Include="Inc\ScalarSin_FMA_V03.h">
       <Filter>Header Files\ScalarSin\FMA</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\VectorSin_SSE_V00.h">
+      <Filter>Header Files\VectorSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_SSE_V01.h">
+      <Filter>Header Files\VectorSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_SSE_V02.h">
+      <Filter>Header Files\VectorSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_SSE_V03.h">
+      <Filter>Header Files\VectorSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_SSE_V04.h">
+      <Filter>Header Files\VectorSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_SSE_V05.h">
+      <Filter>Header Files\VectorSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_SSE_V06.h">
+      <Filter>Header Files\VectorSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_SSE_V07.h">
+      <Filter>Header Files\VectorSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_SSE_V08.h">
+      <Filter>Header Files\VectorSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_FMA_V00.h">
+      <Filter>Header Files\VectorSin\FMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin_FMA_V01.h">
+      <Filter>Header Files\VectorSin\FMA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\stdafx.cpp">

@@ -117,7 +117,18 @@
     <ClInclude Include="Inc\targetver.h" />
     <ClInclude Include="Inc\Utils.h" />
     <ClInclude Include="Inc\VectorSin.h" />
+    <ClInclude Include="Inc\VectorSin_FMA_V00.h" />
+    <ClInclude Include="Inc\VectorSin_FMA_V01.h" />
     <ClInclude Include="Inc\VectorSin_Ref.h" />
+    <ClInclude Include="Inc\VectorSin_SSE_V00.h" />
+    <ClInclude Include="Inc\VectorSin_SSE_V01.h" />
+    <ClInclude Include="Inc\VectorSin_SSE_V02.h" />
+    <ClInclude Include="Inc\VectorSin_SSE_V03.h" />
+    <ClInclude Include="Inc\VectorSin_SSE_V04.h" />
+    <ClInclude Include="Inc\VectorSin_SSE_V05.h" />
+    <ClInclude Include="Inc\VectorSin_SSE_V06.h" />
+    <ClInclude Include="Inc\VectorSin_SSE_V07.h" />
+    <ClInclude Include="Inc\VectorSin_SSE_V08.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\ScalarSin.cpp" />
