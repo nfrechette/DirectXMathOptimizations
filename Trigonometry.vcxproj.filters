@@ -51,80 +51,80 @@
     <ClInclude Include="Inc\VectorSin_Ref.h">
       <Filter>Header Files\VectorSin</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V00.h">
-      <Filter>Header Files\ScalarSin\CPP</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V01.h">
-      <Filter>Header Files\ScalarSin\CPP</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V02.h">
-      <Filter>Header Files\ScalarSin\CPP</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V03.h">
-      <Filter>Header Files\ScalarSin\CPP</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V10.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V12.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V11.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V13.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V14.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V15.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V16.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V20.h">
-      <Filter>Header Files\ScalarSin\FMA</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V17.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V18.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V19.h">
-      <Filter>Header Files\ScalarSin\SSE</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V22.h">
-      <Filter>Header Files\ScalarSin\FMA</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V23.h">
-      <Filter>Header Files\ScalarSin\FMA</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V24.h">
-      <Filter>Header Files\ScalarSin\FMA</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\ScalarSin.h">
       <Filter>Header Files\ScalarSin</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V07.h">
-      <Filter>Header Files\ScalarSin\CPP</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V06.h">
-      <Filter>Header Files\ScalarSin\CPP</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V05.h">
-      <Filter>Header Files\ScalarSin\CPP</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\ScalarSin_V04.h">
-      <Filter>Header Files\ScalarSin\CPP</Filter>
     </ClInclude>
     <ClInclude Include="Inc\VectorSin.h">
       <Filter>Header Files\VectorSin</Filter>
     </ClInclude>
     <ClInclude Include="Inc\ScalarSin_SSE_V09.h">
       <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_CPP_V00.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_CPP_V01.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_CPP_V02.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_CPP_V03.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_CPP_V04.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_CPP_V05.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_CPP_V06.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_CPP_V07.h">
+      <Filter>Header Files\ScalarSin\CPP</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V00.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V01.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V02.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V03.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V04.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V05.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V06.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V07.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V08.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_SSE_V10.h">
+      <Filter>Header Files\ScalarSin\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_FMA_V00.h">
+      <Filter>Header Files\ScalarSin\FMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_FMA_V01.h">
+      <Filter>Header Files\ScalarSin\FMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_FMA_V02.h">
+      <Filter>Header Files\ScalarSin\FMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarSin_FMA_V03.h">
+      <Filter>Header Files\ScalarSin\FMA</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

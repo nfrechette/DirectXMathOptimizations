@@ -5,7 +5,7 @@
 using namespace DirectX;
 
 // Align to a cache line
-__declspec(align(64)) struct ScalarSinConstants_V05
+__declspec(align(64)) struct ScalarSinConstants_CPP_V05
 {
 	float half;					//  4 bytes
 	float neg_half;				//  4 bytes
@@ -23,7 +23,7 @@ __declspec(align(64)) struct ScalarSinConstants_V05
 
 // Extern instead of constexpr since it forces the compiler to use the cache line
 // aligned constants
-extern ScalarSinConstants_V05 SCALAR_SIN_CONSTANTS_V05;
+extern ScalarSinConstants_CPP_V05 SCALAR_SIN_CONSTANTS_CPP_V05;
 
 // V05 is the best I could do with C++ scalar math (based on V04)
 // Nearly everything uses as few registers as possible by leveraging instructions that
@@ -35,43 +35,43 @@ extern ScalarSinConstants_V05 SCALAR_SIN_CONSTANTS_V05;
 // V05 is slower because the instruction ordering before the first branch changes just a tiny bit for
 // an unknown reason.
 // It uses: 5 XMM registers, 34 instructions
-__declspec(noinline) float XMScalarSin_V05(float Value)
+__declspec(noinline) float XMScalarSin_CPP_V05(float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
-	float quotient = Value * SCALAR_SIN_CONSTANTS_V05.inv_two_pi;
+	float quotient = Value * SCALAR_SIN_CONSTANTS_CPP_V05.inv_two_pi;
 	if (Value >= 0.0f)
 	{
-		quotient += SCALAR_SIN_CONSTANTS_V05.half;
+		quotient += SCALAR_SIN_CONSTANTS_CPP_V05.half;
 	}
 	else
 	{
-		quotient += SCALAR_SIN_CONSTANTS_V05.neg_half;
+		quotient += SCALAR_SIN_CONSTANTS_CPP_V05.neg_half;
 	}
 	quotient = float(int(quotient));
 
-	float y = Value - (quotient * SCALAR_SIN_CONSTANTS_V05.two_pi);
+	float y = Value - (quotient * SCALAR_SIN_CONSTANTS_CPP_V05.two_pi);
 
 	// Map y to [-pi/2,pi/2] with sin(y) = sin(Value).
-	if (y > SCALAR_SIN_CONSTANTS_V05.half_pi)
+	if (y > SCALAR_SIN_CONSTANTS_CPP_V05.half_pi)
 	{
-		y = SCALAR_SIN_CONSTANTS_V05.pi - y;
+		y = SCALAR_SIN_CONSTANTS_CPP_V05.pi - y;
 	}
-	else if (!(SCALAR_SIN_CONSTANTS_V05.neg_half_pi < y))
+	else if (!(SCALAR_SIN_CONSTANTS_CPP_V05.neg_half_pi < y))
 	{
-		y = SCALAR_SIN_CONSTANTS_V05.neg_pi - y;
+		y = SCALAR_SIN_CONSTANTS_CPP_V05.neg_pi - y;
 	}
 
 	// 11-degree minimax approximation
 	float y2 = y * y;
-	float result = y2 * SCALAR_SIN_CONSTANTS_V05.coefficients[0];
-	result += SCALAR_SIN_CONSTANTS_V05.coefficients[1];
+	float result = y2 * SCALAR_SIN_CONSTANTS_CPP_V05.coefficients[0];
+	result += SCALAR_SIN_CONSTANTS_CPP_V05.coefficients[1];
 	result *= y2;
-	result -= SCALAR_SIN_CONSTANTS_V05.coefficients[2];
+	result -= SCALAR_SIN_CONSTANTS_CPP_V05.coefficients[2];
 	result *= y2;
-	result += SCALAR_SIN_CONSTANTS_V05.coefficients[3];
+	result += SCALAR_SIN_CONSTANTS_CPP_V05.coefficients[3];
 	result *= y2;
-	result -= SCALAR_SIN_CONSTANTS_V05.coefficients[4];
+	result -= SCALAR_SIN_CONSTANTS_CPP_V05.coefficients[4];
 	result *= y2;
-	result += SCALAR_SIN_CONSTANTS_V05.coefficients[5];
+	result += SCALAR_SIN_CONSTANTS_CPP_V05.coefficients[5];
 	return result * y;
 }

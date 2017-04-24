@@ -4,16 +4,16 @@
 
 using namespace DirectX;
 
-constexpr float ROUNDING_OFFSET_V00[] = { -0.5f, 0.5f };
+constexpr float ROUNDING_OFFSET_CPP_V00[] = { -0.5f, 0.5f };
 
 // V00 tries to remove the first branch
-__declspec(noinline) float XMScalarSin_V00(const float Value)
+__declspec(noinline) float XMScalarSin_CPP_V00(const float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = XM_1DIV2PI * Value;
 
 	// Value branch is randomly taken, removing the branch is a win
-	quotient = (float)((int)(quotient + ROUNDING_OFFSET_V00[Value >= 0.0f]));
+	quotient = (float)((int)(quotient + ROUNDING_OFFSET_CPP_V00[Value >= 0.0f]));
 
 	float y = Value - XM_2PI * quotient;
 

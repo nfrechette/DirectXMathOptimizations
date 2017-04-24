@@ -4,16 +4,16 @@
 
 using namespace DirectX;
 
-constexpr float ROUNDING_OFFSET_V01[] = { -0.5f, 0.5f };
-constexpr float WRAPPING_OFFSET_V01[] = { 0.0f, XM_PI, -XM_PI };
-constexpr float WRAPPING_SCALE_V01[] = { 1.0f, -1.0f, -1.0f };
+constexpr float ROUNDING_OFFSET_CPP_V01[] = { -0.5f, 0.5f };
+constexpr float WRAPPING_OFFSET_CPP_V01[] = { 0.0f, XM_PI, -XM_PI };
+constexpr float WRAPPING_SCALE_CPP_V01[] = { 1.0f, -1.0f, -1.0f };
 
 // V01 tries to remove the first and second branches
-__declspec(noinline) float XMScalarSin_V01(const float Value)
+__declspec(noinline) float XMScalarSin_CPP_V01(const float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = XM_1DIV2PI * Value;
-	quotient = (float)((int)(quotient + ROUNDING_OFFSET_V01[Value >= 0.0f]));
+	quotient = (float)((int)(quotient + ROUNDING_OFFSET_CPP_V01[Value >= 0.0f]));
 
 	float y = Value - XM_2PI * quotient;
 
@@ -31,7 +31,7 @@ __declspec(noinline) float XMScalarSin_V01(const float Value)
 	// y is rarely outside the [-pi/2,pi/2] range, the branches are nearly constant
 	// removing the branches is slower
 	unsigned int range_index = ((y > XM_PIDIV2) << 1) | (y < -XM_PIDIV2);
-	y = (y + WRAPPING_OFFSET_V01[range_index]) * WRAPPING_SCALE_V01[range_index];
+	y = (y + WRAPPING_OFFSET_CPP_V01[range_index]) * WRAPPING_SCALE_CPP_V01[range_index];
 
 	// 11-degree minimax approximation
 	float y2 = y * y;

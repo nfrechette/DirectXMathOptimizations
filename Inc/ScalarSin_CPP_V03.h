@@ -4,23 +4,16 @@
 
 using namespace DirectX;
 
-constexpr float HALF_V04 = 0.5f;
-constexpr float NEG_HALF_V04 = -0.5f;
+constexpr float HALF_CPP_V03 = 0.5f;
+constexpr float NEG_HALF_CPP_V03 = -0.5f;
 
-// V04 tries to tweak the first branch differently
-__declspec(noinline) float XMScalarSin_V04(float Value)
+// V03 tries to remove the first branch differently
+__declspec(noinline) float XMScalarSin_CPP_V03(float Value)
 {
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
 	float quotient = XM_1DIV2PI * Value;
-	if (Value >= 0.0f)
-	{
-		quotient += 0.5f;
-	}
-	else
-	{
-		quotient -= 0.5f;
-	}
-	quotient = float(int(quotient));
+	const float* rounding_offset = Value >= 0.0f ? &HALF_CPP_V03 : &NEG_HALF_CPP_V03;
+	quotient = (float)((int)(quotient + *rounding_offset));
 
 	float y = Value - XM_2PI * quotient;
 
