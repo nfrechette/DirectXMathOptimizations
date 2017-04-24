@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClInclude Include="Inc\ScalarSin.h" />
     <ClInclude Include="Inc\ScalarSin_Ref.h" />
+    <ClInclude Include="Inc\ScalarSin_SSE_V09.h" />
     <ClInclude Include="Inc\ScalarSin_V00.h" />
     <ClInclude Include="Inc\ScalarSin_V01.h" />
     <ClInclude Include="Inc\ScalarSin_V04.h" />
@@ -109,19 +110,20 @@
     <ClInclude Include="Inc\ScalarSin_V14.h" />
     <ClInclude Include="Inc\ScalarSin_V02.h" />
     <ClInclude Include="Inc\ScalarSin_V03.h" />
-    <ClInclude Include="Inc\ScalarSin_V21.h" />
     <ClInclude Include="Inc\ScalarSin_V22.h" />
     <ClInclude Include="Inc\ScalarSin_V23.h" />
     <ClInclude Include="Inc\ScalarSin_V24.h" />
     <ClInclude Include="Inc\stdafx.h" />
     <ClInclude Include="Inc\targetver.h" />
     <ClInclude Include="Inc\Utils.h" />
+    <ClInclude Include="Inc\VectorSin.h" />
     <ClInclude Include="Inc\VectorSin_Ref.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\ScalarSin.cpp" />
     <ClCompile Include="Src\stdafx.cpp" />
     <ClCompile Include="Src\Trigonometry.cpp" />
+    <ClCompile Include="Src\VectorSin.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -40,15 +40,9 @@ extern ScalarSinConstants_V24 SCALAR_SIN_CONSTANTS_V24;
 inline float XMScalarSin_V24(const float Value)
 {
 	const XMVECTOR value_v = _mm_set_ps1(Value);
-	const XMVECTOR sign_bit_mask = _mm_broadcast_ss((float*)&SCALAR_SIN_CONSTANTS_V24.sign_bit);
-	const XMVECTOR value_sign = _mm_and_ps(value_v, sign_bit_mask);
 
-	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
-	// If Value >= 0.0, our rounding offset is 0.5, otherwise -0.5, same sign as Value
-	const XMVECTOR rounding_offset = _mm_or_ps(value_sign, SCALAR_SIN_CONSTANTS_V24.packed0);	// Only rounding_offset.x is valid
-	XMVECTOR quotient = _mm_fmadd_ss(value_v, *(XMVECTOR*)&SCALAR_SIN_CONSTANTS_V24.inv_two_pi, rounding_offset);
-
-	quotient = _mm_round_ss(quotient, quotient, _MM_FROUND_TO_ZERO);
+	XMVECTOR quotient = _mm_mul_ss(value_v, *(XMVECTOR*)&SCALAR_SIN_CONSTANTS_V24.inv_two_pi);
+	quotient = _mm_round_ss(quotient, quotient, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC);
 
 	XMVECTOR y = _mm_fnmadd_ss(quotient, *(XMVECTOR*)&SCALAR_SIN_CONSTANTS_V24.two_pi, value_v);
 	if (_mm_comigt_ss(y, *(XMVECTOR*)&SCALAR_SIN_CONSTANTS_V24.half_pi))

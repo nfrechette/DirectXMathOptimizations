@@ -21,9 +21,16 @@ inline bool EnsureMatrixEqual(DirectX::CXMMATRIX m1, DirectX::CXMMATRIX m2)
 	return true;
 }
 
-inline bool EnsureFloatEqual(float v1, float v2)
+inline bool IsFloatEqual(const float v1, const float v2)
 {
-	if (memcmp(&v1, &v2, sizeof(float)) != 0)
+	const bool inputs_equal = memcmp(&v1, &v2, sizeof(float)) == 0;
+	const bool both_zero = v1 == 0.0f && v2 == 0.0f;
+	return inputs_equal || both_zero;
+}
+
+inline bool EnsureFloatEqual(const float v1, const float v2)
+{
+	if (!IsFloatEqual(v1, v2))
 	{
 		abort();
 		return false;
@@ -32,9 +39,23 @@ inline bool EnsureFloatEqual(float v1, float v2)
 	return true;
 }
 
-inline bool EnsureFloatApproxEqual(float v1, float v2, double threshold)
+inline bool XM_CALLCONV EnsureVectorEqual(const DirectX::XMVECTOR v1, const DirectX::XMVECTOR v2)
 {
-	double delta_abs = fabs(double(v1) - double(v2));
+	if (!IsFloatEqual(*((float*)&v1 + 0), *((float*)&v2 + 0))
+		|| !IsFloatEqual(*((float*)&v1 + 1), *((float*)&v2 + 1))
+		|| !IsFloatEqual(*((float*)&v1 + 2), *((float*)&v2 + 2))
+		|| !IsFloatEqual(*((float*)&v1 + 3), *((float*)&v2 + 3)))
+	{
+		abort();
+		return false;
+	}
+
+	return true;
+}
+
+inline bool EnsureFloatApproxEqual(const float v1, const float v2, const double threshold)
+{
+	const double delta_abs = fabs(double(v1) - double(v2));
 	if (delta_abs > threshold)
 	{
 		abort();

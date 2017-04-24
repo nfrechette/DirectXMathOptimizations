@@ -7,7 +7,6 @@ using namespace DirectX;
 
 #include "Utils.h"
 #include "ScalarSin_Ref.h"
-#include "VectorSin_Ref.h"
 
 // 0* versions use C++ scalar math
 #include "ScalarSin_V00.h"
@@ -29,11 +28,11 @@ using namespace DirectX;
 #include "ScalarSin_V16.h"
 #include "ScalarSin_V17.h"
 #include "ScalarSin_V18.h"
+#include "ScalarSin_SSE_V09.h"
 #include "ScalarSin_V19.h"
 
 // 2* versions use FMA scalar math
 #include "ScalarSin_V20.h"
-#include "ScalarSin_V21.h"
 #include "ScalarSin_V22.h"
 #include "ScalarSin_V23.h"
 #include "ScalarSin_V24.h"
@@ -338,6 +337,19 @@ __declspec(noinline) void Test_ScalarSin_V18(const __int32 num_iterations, std::
 	output << "scalar_sin,v18," << TicksToMS(ticks) << std::endl;
 }
 
+__declspec(noinline) void Test_ScalarSin_SSE_V09(const __int32 num_iterations, std::stringstream& output, const float* inputs, const __int32 num_inputs)
+{
+	volatile float result = 0.0f;
+
+	LONGLONG ticks = Measure(num_iterations, [inputs, num_inputs, &result]()
+	{
+		for (__int32 i = 0; i < num_inputs; ++i)
+			result = XMScalarSin_SSE_V09(inputs[i]);
+	});
+
+	output << "scalar_sin,sse_v09," << TicksToMS(ticks) << std::endl;
+}
+
 __declspec(noinline) void Test_ScalarSin_V19(const __int32 num_iterations, std::stringstream& output, const float* inputs, const __int32 num_inputs)
 {
 	volatile float result = 0.0f;
@@ -362,19 +374,6 @@ __declspec(noinline) void Test_ScalarSin_V20(const __int32 num_iterations, std::
 	});
 
 	output << "scalar_sin,v20," << TicksToMS(ticks) << std::endl;
-}
-
-__declspec(noinline) void Test_ScalarSin_V21(const __int32 num_iterations, std::stringstream& output, const float* inputs, const __int32 num_inputs)
-{
-	volatile float result = 0.0f;
-
-	LONGLONG ticks = Measure(num_iterations, [inputs, num_inputs, &result]()
-	{
-		for (__int32 i = 0; i < num_inputs; ++i)
-			result = XMScalarSin_V21(inputs[i]);
-	});
-
-	output << "scalar_sin,v21," << TicksToMS(ticks) << std::endl;
 }
 
 __declspec(noinline) void Test_ScalarSin_V22(const __int32 num_iterations, std::stringstream& output, const float* inputs, const __int32 num_inputs)
@@ -441,13 +440,13 @@ void ValidateImplementations(const float input)
 	EnsureFloatEqual(result_ref, XMScalarSin_V16(input));
 	EnsureFloatEqual(result_ref, XMScalarSin_V17(input));
 	EnsureFloatEqual(result_ref, XMScalarSin_V18(input));
+	EnsureFloatEqual(result_ref, XMScalarSin_SSE_V09(input));
 	EnsureFloatEqual(result_ref, XMScalarSin_V19(input));
 
 	// Approximate versions
 	constexpr double accuracy_threshold = 0.000001;
 
 	EnsureFloatApproxEqual(result_ref, XMScalarSin_V20(input), accuracy_threshold);
-	EnsureFloatApproxEqual(result_ref, XMScalarSin_V21(input), accuracy_threshold);
 	EnsureFloatApproxEqual(result_ref, XMScalarSin_V22(input), accuracy_threshold);
 	EnsureFloatApproxEqual(result_ref, XMScalarSin_V23(input), accuracy_threshold);
 	EnsureFloatApproxEqual(result_ref, XMScalarSin_V24(input), accuracy_threshold);
@@ -471,7 +470,28 @@ void ProfileScalarSin(const __int32 random_seed, const __int32 num_samples, cons
 
 	// Random input in range [-PI, PI]
 	float inputs[num_inputs];
-	for (__int32 i = 0; i < num_inputs; ++i) inputs[i] = random_distribution(re) * XM_PI * 4;
+
+	// Edge cases
+	inputs[0] = 0.0f;
+	inputs[1] = XM_PIDIV2;
+	inputs[2] = XM_PI;
+	inputs[3] = XM_PI + XM_PIDIV2;
+	inputs[4] = XM_2PI;
+	inputs[5] = XM_2PI + XM_PIDIV2;
+	inputs[6] = XM_2PI + XM_PI;
+	inputs[7] = XM_2PI + XM_PI + XM_PIDIV2;
+	inputs[8] = XM_2PI + XM_2PI;
+	inputs[9] = -inputs[1];
+	inputs[10] = -inputs[2];
+	inputs[11] = -inputs[3];
+	inputs[12] = -inputs[4];
+	inputs[13] = -inputs[5];
+	inputs[14] = -inputs[6];
+	inputs[15] = -inputs[7];
+	inputs[16] = -inputs[8];
+
+	// Random inputs
+	for (__int32 i = 17; i < num_inputs; ++i) inputs[i] = random_distribution(re) * XM_PI * 4;
 
 	// Validate implementations
 	for (__int32 i = 0; i < num_inputs; ++i) ValidateImplementations(inputs[i]);
@@ -500,10 +520,10 @@ void ProfileScalarSin(const __int32 random_seed, const __int32 num_samples, cons
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V16(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V17(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V18(num_iterations, output, inputs, num_inputs);
+	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_SSE_V09(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V19(num_iterations, output, inputs, num_inputs);
 
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V20(num_iterations, output, inputs, num_inputs);
-	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V21(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V22(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V23(num_iterations, output, inputs, num_inputs);
 	for (__int32 i = 0; i < num_samples; ++i) Test_ScalarSin_V24(num_iterations, output, inputs, num_inputs);

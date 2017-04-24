@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ScalarSin.h"
+#include "VectorSin.h"
 
 #include <DirectXMath.h>
 
@@ -22,6 +23,7 @@ void ProfileTrigonometry()
 	constexpr __int32 random_seed = 304;
 
 	ProfileScalarSin(random_seed, num_samples, num_iterations);
+	ProfileVectorSin(random_seed, num_samples, num_iterations);
 }
 
 int main()

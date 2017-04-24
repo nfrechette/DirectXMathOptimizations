@@ -25,15 +25,9 @@ constexpr XMVECTOR SIN_COEFF5_V20 = { 1.0f, 0, 0, 0 };
 __declspec(noinline) float XMScalarSin_V20(const float Value)
 {
 	const XMVECTOR value_v = _mm_set_ps1(Value);
-	const XMVECTOR sign_bit_mask = _mm_broadcast_ss((float*)&SIGN_BIT_MASK_V20);
-	const XMVECTOR value_sign = _mm_and_ps(value_v, sign_bit_mask);
 
-	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
-	// If Value >= 0.0, our rounding offset is 0.5, otherwise -0.5, same sign as Value
-	const XMVECTOR rounding_offset = _mm_or_ps(value_sign, XM_HALF_V20);
-	XMVECTOR quotient = _mm_fmadd_ss(value_v, XM_1DIV2PI_V20, rounding_offset);
-
-	quotient = _mm_round_ss(quotient, quotient, _MM_FROUND_TO_ZERO);
+	XMVECTOR quotient = _mm_mul_ss(value_v, XM_1DIV2PI_V20);
+	quotient = _mm_round_ss(quotient, quotient, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC);
 
 	XMVECTOR y = _mm_fnmadd_ss(quotient, XM_2PI_V20, value_v);
 	if (_mm_comigt_ss(y, XM_PIDIV2_V20))
