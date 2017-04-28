@@ -296,8 +296,15 @@ void WarmUp(const XMVECTOR* inputs, const __int32 num_inputs)
 	for (__int32 i = 0; i < 250; ++i) Test_VectorSin_Ref(100000, tmp, inputs, num_inputs);
 }
 
-void ProfileVectorSin(const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations)
+void ProfileVectorSin()
 {
+	//constexpr __int32 num_samples = 100;
+	constexpr __int32 num_samples = 10;
+
+	constexpr __int32 num_iterations = 100000 * 2;
+	//constexpr __int32 num_iterations = 1000;
+
+	constexpr __int32 random_seed = 304;
 	constexpr __int32 num_inputs = 128;
 
 	std::random_device rd;

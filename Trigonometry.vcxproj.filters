@@ -34,6 +34,24 @@
     <Filter Include="Header Files\VectorSin\FMA">
       <UniqueIdentifier>{7f32beb7-e95e-4631-8153-3af483ecdf92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ScalarCos">
+      <UniqueIdentifier>{516abbb2-4b31-4823-89ce-faf7b40830c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\VectorCos">
+      <UniqueIdentifier>{c2ebc914-8d30-4676-beb2-608a635bb077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ScalarCos\SSE">
+      <UniqueIdentifier>{8b2fa453-74ca-413e-b667-cafb51834fff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ScalarCos\FMA">
+      <UniqueIdentifier>{c28b27d6-6947-4a30-b7ff-273fde259c98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\VectorCos\SSE">
+      <UniqueIdentifier>{469f72ec-1306-4dde-a878-6cd46cc3d4cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\VectorCos\FMA">
+      <UniqueIdentifier>{73c3e6b3-63a3-422d-99bb-e16d6674702c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\stdafx.h">
@@ -48,14 +66,8 @@
     <ClInclude Include="Inc\ScalarSin\ScalarSin_Ref.h">
       <Filter>Header Files\ScalarSin</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\VectorSin_Ref.h">
-      <Filter>Header Files\VectorSin</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\ScalarSin\ScalarSin.h">
       <Filter>Header Files\ScalarSin</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\VectorSin.h">
-      <Filter>Header Files\VectorSin</Filter>
     </ClInclude>
     <ClInclude Include="Inc\ScalarSin\ScalarSin_SSE_V09.h">
       <Filter>Header Files\ScalarSin\SSE</Filter>
@@ -159,6 +171,30 @@
     <ClInclude Include="Inc\VectorSin\VectorSin_FMA_V01.h">
       <Filter>Header Files\VectorSin\FMA</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\VectorSin\VectorSin.h">
+      <Filter>Header Files\VectorSin</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorSin\VectorSin_Ref.h">
+      <Filter>Header Files\VectorSin</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarCos\ScalarCos.h">
+      <Filter>Header Files\ScalarCos</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarCos\ScalarCos_Ref.h">
+      <Filter>Header Files\ScalarCos</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorCos\VectorCos.h">
+      <Filter>Header Files\VectorCos</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorCos\VectorCos_Ref.h">
+      <Filter>Header Files\VectorCos</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarCos\ScalarCos_SSE_V00.h">
+      <Filter>Header Files\ScalarCos\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\ScalarCos\ScalarCos_FMA_V00.h">
+      <Filter>Header Files\ScalarCos\FMA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\stdafx.cpp">
@@ -171,6 +207,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\VectorSin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ScalarCos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\VectorCos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

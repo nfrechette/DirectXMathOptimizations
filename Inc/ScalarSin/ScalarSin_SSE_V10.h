@@ -30,7 +30,7 @@ inline float XMScalarSin_SSE_V10(const float Value)
 	const XMVECTOR value_v = _mm_set_ps1(Value);
 
 	// Map Value to y in [-pi,pi], x = 2*pi*quotient + remainder.
-	XMVECTOR quotient = _mm_mul_ss(value_v, XM_1DIV2PI_SSE_V09);
+	XMVECTOR quotient = _mm_mul_ss(value_v, *(XMVECTOR*)&SCALAR_SIN_CONSTANTS_SSE_V10.inv_two_pi);
 	quotient = _mm_round_ss(quotient, quotient, _MM_FROUND_TO_NEAREST_INT | _MM_FROUND_NO_EXC);
 
 	XMVECTOR y = _mm_sub_ss(value_v, _mm_mul_ss(quotient, *(XMVECTOR*)&SCALAR_SIN_CONSTANTS_SSE_V10.two_pi));
@@ -38,7 +38,7 @@ inline float XMScalarSin_SSE_V10(const float Value)
 	{
 		y = _mm_sub_ss(*(XMVECTOR*)&SCALAR_SIN_CONSTANTS_SSE_V10.pi, y);	// 1 cmp, 1 sub, 3 mov, 2 jmp = 7 instructions
 	}
-	else if (!_mm_comilt_ss(*(XMVECTOR*)&SCALAR_SIN_CONSTANTS_SSE_V10.neg_half_pi, y))
+	else if (!_mm_comile_ss(*(XMVECTOR*)&SCALAR_SIN_CONSTANTS_SSE_V10.neg_half_pi, y))
 	{
 		y = _mm_sub_ss(*(XMVECTOR*)&SCALAR_SIN_CONSTANTS_SSE_V10.neg_pi, y);	// 2 cmp, 1 sub, 3 mov, 2 jmp = 8 instructions
 	}

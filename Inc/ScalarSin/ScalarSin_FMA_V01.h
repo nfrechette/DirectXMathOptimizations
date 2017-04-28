@@ -33,7 +33,7 @@ __declspec(noinline) float XMScalarSin_FMA_V01(const float Value)
 	{
 		y = _mm_sub_ss(XM_PI_FMA_V01, y);	// 1 cmp, 1 sub, 3 mov, 2 jmp = 7 instructions
 	}
-	else if (!_mm_comilt_ss(XM_NEG_PIDIV2_FMA_V01, y))
+	else if (!_mm_comile_ss(XM_NEG_PIDIV2_FMA_V01, y))
 	{
 		y = _mm_sub_ss(XM_NEG_PI_FMA_V01, y);	// 2 cmp, 1 sub, 3 mov, 2 jmp = 8 instructions
 	}

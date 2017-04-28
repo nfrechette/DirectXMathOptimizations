@@ -88,6 +88,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Inc\ScalarCos\ScalarCos.h" />
+    <ClInclude Include="Inc\ScalarCos\ScalarCos_FMA_V00.h" />
+    <ClInclude Include="Inc\ScalarCos\ScalarCos_Ref.h" />
+    <ClInclude Include="Inc\ScalarCos\ScalarCos_SSE_V00.h" />
     <ClInclude Include="Inc\ScalarSin\ScalarSin.h" />
     <ClInclude Include="Inc\ScalarSin\ScalarSin_Ref.h" />
     <ClInclude Include="Inc\ScalarSin\ScalarSin_SSE_V09.h" />
@@ -116,6 +120,8 @@
     <ClInclude Include="Inc\stdafx.h" />
     <ClInclude Include="Inc\targetver.h" />
     <ClInclude Include="Inc\Utils.h" />
+    <ClInclude Include="Inc\VectorCos\VectorCos.h" />
+    <ClInclude Include="Inc\VectorCos\VectorCos_Ref.h" />
     <ClInclude Include="Inc\VectorSin\VectorSin.h" />
     <ClInclude Include="Inc\VectorSin\VectorSin_FMA_V00.h" />
     <ClInclude Include="Inc\VectorSin\VectorSin_FMA_V01.h" />
@@ -131,9 +137,11 @@
     <ClInclude Include="Inc\VectorSin\VectorSin_SSE_V08.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\ScalarCos.cpp" />
     <ClCompile Include="Src\ScalarSin.cpp" />
     <ClCompile Include="Src\stdafx.cpp" />
     <ClCompile Include="Src\Trigonometry.cpp" />
+    <ClCompile Include="Src\VectorCos.cpp" />
     <ClCompile Include="Src\VectorSin.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

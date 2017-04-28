@@ -16,7 +16,7 @@ __declspec(align(64)) struct VectorSinConstants_FMA_V01
 
 	XMVECTOR coefficients[6];	// 96 bytes
 
-								// Total struct size:		  176 bytes (3 cache lines)
+	// Total struct size:		  176 bytes (3 cache lines)
 };
 
 // Extern instead of constexpr since it forces the compiler to use the cache line

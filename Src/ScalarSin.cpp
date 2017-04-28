@@ -90,11 +90,9 @@ ScalarSinConstants_SSE_V10 SCALAR_SIN_CONSTANTS_SSE_V10 =
 
 ScalarSinConstants_FMA_V03 SCALAR_SIN_CONSTANTS_FMA_V03 =
 {
-	0.5f,
 	XM_PI,
 	-XM_PI,
 	XM_2PI,
-	0x80000000,
 	XM_1DIV2PI,
 	XM_PIDIV2,
 	-XM_PIDIV2,
@@ -413,7 +411,7 @@ __declspec(noinline) void Test_ScalarSin_FMA_V03(const __int32 num_iterations, s
 	output << "scalar_sin,fma_v03," << TicksToMS(ticks) << std::endl;
 }
 
-void ValidateImplementations(const float input)
+static void ValidateImplementations(const float input)
 {
 	const float result_ref = XMScalarSin(input);
 
@@ -450,14 +448,21 @@ void ValidateImplementations(const float input)
 	EnsureFloatApproxEqual(result_ref, XMScalarSin_FMA_V03(input), accuracy_threshold);
 }
 
-void WarmUp(const float* inputs, const __int32 num_inputs)
+static void WarmUp(const float* inputs, const __int32 num_inputs)
 {
 	std::stringstream tmp;
 	for (__int32 i = 0; i < 1000; ++i) Test_ScalarSin_Ref(100000, tmp, inputs, num_inputs);
 }
 
-void ProfileScalarSin(const __int32 random_seed, const __int32 num_samples, const __int32 num_iterations)
+void ProfileScalarSin()
 {
+	//constexpr __int32 num_samples = 100;
+	constexpr __int32 num_samples = 10;
+
+	constexpr __int32 num_iterations = 100000 * 2;
+	//constexpr __int32 num_iterations = 1000;
+
+	constexpr __int32 random_seed = 304;
 	constexpr __int32 num_inputs = 128;
 
 	std::random_device rd;
