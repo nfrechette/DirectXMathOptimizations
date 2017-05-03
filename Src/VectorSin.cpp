@@ -305,7 +305,7 @@ void ProfileVectorSin()
 	//constexpr __int32 num_iterations = 1000;
 
 	constexpr __int32 random_seed = 304;
-	constexpr __int32 num_inputs = 128;
+	constexpr __int32 num_inputs = 512;
 
 	std::random_device rd;
 	std::default_random_engine re(rd());

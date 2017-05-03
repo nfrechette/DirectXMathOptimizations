@@ -14,10 +14,10 @@ void ProfileTrigonometry()
 	const __int32 mask = 1 << 4;
 	SetThreadAffinityMask(GetCurrentThread(), mask);
 
-	//ProfileScalarSin();
-	//ProfileVectorSin();
+	ProfileScalarSin();
+	ProfileVectorSin();
 
-	//ProfileScalarCos();
+	ProfileScalarCos();
 	ProfileVectorCos();
 }
 

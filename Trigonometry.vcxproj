@@ -121,7 +121,9 @@
     <ClInclude Include="Inc\targetver.h" />
     <ClInclude Include="Inc\Utils.h" />
     <ClInclude Include="Inc\VectorCos\VectorCos.h" />
+    <ClInclude Include="Inc\VectorCos\VectorCos_FMA_V00.h" />
     <ClInclude Include="Inc\VectorCos\VectorCos_Ref.h" />
+    <ClInclude Include="Inc\VectorCos\VectorCos_SSE_V00.h" />
     <ClInclude Include="Inc\VectorSin\VectorSin.h" />
     <ClInclude Include="Inc\VectorSin\VectorSin_FMA_V00.h" />
     <ClInclude Include="Inc\VectorSin\VectorSin_FMA_V01.h" />

@@ -195,6 +195,12 @@
     <ClInclude Include="Inc\ScalarCos\ScalarCos_FMA_V00.h">
       <Filter>Header Files\ScalarCos\FMA</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\VectorCos\VectorCos_SSE_V00.h">
+      <Filter>Header Files\VectorCos\SSE</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\VectorCos\VectorCos_FMA_V00.h">
+      <Filter>Header Files\VectorCos\FMA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\stdafx.cpp">
